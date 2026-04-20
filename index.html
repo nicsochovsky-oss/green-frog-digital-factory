@@ -19,16 +19,37 @@
     .led-glow-yellow { border-left: 4px solid #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.2); }
     .led-glow-green { border-left: 4px solid #4ade80; box-shadow: 0 0 15px rgba(74, 222, 128, 0.2); }
 
-    /* 3. VIDEO & OVERLAY LOGIC */
+   /* 3. VIDEO & OVERLAY LOGIC (Optimized for Mobile Cover) */
     .video-docker {
         position: absolute;
-        top: 50%; left: 50%;
-        min-width: 105%; min-height: 105%;
+        top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
         pointer-events: none;
+        object-fit: cover;
     }
+
+    /* Force height on mobile to prevent black bars */
+    @media (max-width: 768px) {
+        .video-docker {
+            width: 350%; /* Scales width up so height fills tall phone screens */
+            height: 100%;
+        }
+    }
+
+    /* Standard scaling for Desktop */
+    @media (min-width: 769px) {
+        .video-docker {
+            width: 115vw;
+            height: 115vh;
+        }
+    }
+
     .overlay-dark {
+        position: absolute;
+        inset: 0;
         background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
+        z-index: 10;
     }
 
     /* 4. FLIP CARD ENGINE */
@@ -61,27 +82,32 @@
 </head>
 <body class="text-white bg-black">
 
-    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10 px-6 py-5 flex justify-between items-center">
-        <div class="flex items-center gap-5">
-            <div class="h-16 w-16 rounded-full overflow-hidden border-2 border-green-500/50 bg-black flex items-center justify-center shadow-[0_0_20px_rgba(74,222,128,0.2)]">
-                <img src="Greenfroglogo.jpg" alt="Green Frog Logo" class="h-full w-full object-cover scale-110">
-            </div>
-            <span class="text-3xl font-power italic tracking-tighter">GREEN <span class="neon-green-text">FROG</span></span>
+ <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10 px-6 py-5 flex justify-between items-center">
+    <div class="flex items-center gap-5">
+        <div class="h-16 w-16 rounded-full overflow-hidden border-2 border-green-500/50 bg-black flex items-center justify-center shadow-[0_0_20px_rgba(74,222,128,0.2)]">
+            <img src="Greenfroglogo.jpg" alt="Green Frog Logo" class="h-full w-full object-cover scale-110">
         </div>
-        <div class="hidden md:flex gap-8 font-tech text-[10px] uppercase tracking-[0.2em] text-slate-400">
-            <a href="#four-cues" class="hover:text-green-400 transition">Consumer Proposition</a>
-            <a href="#frog-o-meter" class="hover:text-green-400 transition">Comparison</a>
-        </div>
-    </nav>
+        
+        <span class="text-xl md:text-2xl font-power italic tracking-tighter uppercase leading-none">
+            THE GREEN <span class="neon-green-text">FROG</span> 
+            <span class="block md:inline text-xs md:text-sm text-slate-400 mt-1 md:mt-0 md:ml-2">CAR WASH</span>
+        </span>
+    </div>
+    
+    <div class="hidden md:flex gap-8 font-tech text-[10px] uppercase tracking-[0.2em] text-slate-400">
+        <a href="#four-cues" class="hover:text-green-400 transition">Consumer Proposition</a>
+        <a href="#frog-o-meter" class="hover:text-green-400 transition">Comparison</a>
+    </div>
+</nav>
 
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+<header class="relative h-[100dvh] flex items-center justify-center overflow-hidden bg-black">
         <div class="absolute inset-0 z-0">
             <iframe id="factoryVideo" src="https://www.youtube.com/embed/PyWIGwAvc4g?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&enablejsapi=1" class="video-docker" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="absolute inset-0 overlay-dark z-10"></div>
         </div>
         
         <div class="relative z-20 text-center px-4 max-w-6xl">
-            <h1 class="text-6xl md:text-[10rem] leading-none mb-6 italic tracking-tighter">
+            <h1 class="text-6xl md:text-[10rem] leading-none mb-6 italic tracking-tighter font-power">
                 THE 4-MINUTE <span class="neon-green-text block md:inline">REVOLUTION.</span>
             </h1>
             <p class="font-tech text-lg md:text-xl uppercase tracking-[0.4em] text-green-400/80">
