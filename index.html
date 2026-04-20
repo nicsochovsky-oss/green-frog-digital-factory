@@ -6,11 +6,26 @@
     <title>Green Frog | The 4-Minute Revolution</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        /* CMO Typography Strategy: Archivo Black for Power, Roboto Mono for Precision */
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:wght@400;700&display=swap');
         
+        :root {
+            --font-power: 'Archivo Black', sans-serif;
+            --font-tech: 'Roboto Mono', monospace;
+        }
+
         body { 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Inter', sans-serif; /* Fallback */
             background-color: #000000; 
+        }
+
+        h1, h2, h3, h4, .font-power { 
+            font-family: var(--font-power); 
+            text-transform: uppercase;
+        }
+
+        .font-tech { 
+            font-family: var(--font-tech); 
         }
 
         /* Branding Colors */
@@ -18,9 +33,9 @@
         .neon-green-bg { background-color: #4ade80; }
         
         /* Architect Lighting Accents */
-        .led-glow-red { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); border-left: 4px solid #ef4444; }
-        .led-glow-yellow { box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); border-left: 4px solid #eab308; }
-        .led-glow-green { box-shadow: 0 0 15px rgba(74, 222, 128, 0.4); border-left: 4px solid #4ade80; }
+        .led-glow-red { border-left: 4px solid #ef4444; }
+        .led-glow-yellow { border-left: 4px solid #eab308; }
+        .led-glow-green { border-left: 4px solid #4ade80; }
 
         .video-docker {
             position: absolute;
@@ -32,97 +47,80 @@
             pointer-events: none;
         }
 
-        /* Industrial Gradient Overlay */
         .overlay-dark {
-            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
         }
     </style>
 </head>
 <body class="text-white bg-black">
 
-<nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-4">
-            <div class="h-14 w-14 rounded-full overflow-hidden border border-green-500/30 bg-black flex items-center justify-center">
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10 px-6 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-5">
+            <div class="h-16 w-16 rounded-full overflow-hidden border-2 border-green-500/50 bg-black flex items-center justify-center shadow-[0_0_20px_rgba(74,222,128,0.2)]">
                 <img src="Greenfroglogo.jpg" alt="Green Frog Logo" class="h-full w-full object-cover scale-110">
             </div>
-            <span class="text-2xl font-black italic tracking-tighter uppercase">GREEN <span class="neon-green-text">FROG</span></span>
+            <span class="text-3xl font-power italic tracking-tighter">GREEN <span class="neon-green-text">FROG</span></span>
         </div>
-        <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest">
-            <a href="#four-cues" class="hover:text-green-400 transition">The Consumer Proposition</a>
+        <div class="hidden md:flex gap-8 font-tech text-[10px] uppercase tracking-[0.2em] text-slate-400">
+            <a href="#four-cues" class="hover:text-green-400 transition">Consumer Proposition</a>
             <a href="#frog-o-meter" class="hover:text-green-400 transition">Comparison</a>
         </div>
     </nav>
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <iframe 
-                id="factoryVideo"
-                src="https://www.youtube.com/embed/PyWIGwAvc4g?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&enablejsapi=1" 
-                class="video-docker"
-                frameborder="0" 
-                allow="autoplay; encrypted-media">
-            </iframe>
+            <iframe id="factoryVideo" src="https://www.youtube.com/embed/PyWIGwAvc4g?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&enablejsapi=1" class="video-docker" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="absolute inset-0 overlay-dark z-10"></div>
         </div>
         
-        <div class="relative z-20 text-center px-4 max-w-5xl">
-            <h1 class="text-7xl md:text-9xl font-black tracking-tighter mb-4 italic uppercase">
-                THE 4-MINUTE <span class="neon-green-text">REVOLUTION.</span>
+        <div class="relative z-20 text-center px-4 max-w-6xl">
+            <h1 class="text-6xl md:text-[10rem] leading-none mb-6 italic tracking-tighter">
+                THE 4-MINUTE <span class="neon-green-text block md:inline">REVOLUTION.</span>
             </h1>
-            <p class="text-xl md:text-2xl font-medium uppercase tracking-[0.3em] text-slate-300">
-                German Precision. Silicon Valley Speed.
+            <p class="font-tech text-lg md:text-xl uppercase tracking-[0.4em] text-green-400/80">
+                German Precision // Silicon Valley Speed
             </p>
         </div>
     </header>
 
     <section id="four-cues" class="py-32 px-6 bg-black">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="p-8 bg-zinc-900/50 led-glow-green">
-                    <div class="text-xs font-black neon-green-text mb-4 tracking-widest uppercase">01 / Speed</div>
-                    <h3 class="text-2xl font-black mb-4 uppercase italic leading-none">Time-Back<br>Guarantee</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        4-minute wash. 7-minute interior clean.
-                    </p>
-                </div>
-                <div class="p-8 bg-zinc-900/50 led-glow-red">
-                    <div class="text-xs font-black text-red-500 mb-4 tracking-widest uppercase">02 / Quality</div>
-                    <h3 class="text-2xl font-black mb-4 uppercase italic leading-none">German<br>Engineering</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Christ AG hardware. State of the Art Engineering and Chemistry.
-                    </p>
-                </div>
-                <div class="p-8 bg-zinc-900/50 led-glow-yellow">
-                    <div class="text-xs font-black text-yellow-500 mb-4 tracking-widest uppercase">03 / Consistency</div>
-                    <h3 class="text-2xl font-black mb-4 uppercase italic leading-none">The Factory<br>Standard</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Eliminating human error. Every wash is identical. Every time.
-                    </p>
-                </div>
-                <div class="p-8 bg-zinc-900/50 led-glow-green">
-                    <div class="text-xs font-black neon-green-text mb-4 tracking-widest uppercase">04 / Price</div>
-                    <h3 class="text-2xl font-black mb-4 uppercase italic leading-none">Unbeatable<br>Value</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        £10 Exterior / £20 In & Out Clean. 
-                    </p>
-                </div>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+            <div class="p-8 bg-zinc-900/30 led-glow-green border border-white/5">
+                <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">01 // SPEED</div>
+                <h3 class="text-2xl mb-4 italic leading-tight">Time-Back<br>Guarantee</h3>
+                <p class="text-slate-400 text-sm leading-relaxed font-light">4-minute wash. 7-minute interior clean.</p>
+            </div>
+            <div class="p-8 bg-zinc-900/30 led-glow-red border border-white/5">
+                <div class="font-tech text-[10px] text-red-500 mb-6 tracking-[0.3em] uppercase">02 // QUALITY</div>
+                <h3 class="text-2xl mb-4 italic leading-tight">German<br>Engineering</h3>
+                <p class="text-slate-400 text-sm leading-relaxed font-light">State of the Art Engineering and chemistry.</p>
+            </div>
+            <div class="p-8 bg-zinc-900/30 led-glow-yellow border border-white/5">
+                <div class="font-tech text-[10px] text-yellow-500 mb-6 tracking-[0.3em] uppercase">03 // CONSISTENCY</div>
+                <h3 class="text-2xl mb-4 italic leading-tight">The Factory<br>Standard</h3>
+                <p class="text-slate-400 text-sm leading-relaxed font-light">Eliminating human error. Every wash is identical. Every time.</p>
+            </div>
+            <div class="p-8 bg-zinc-900/30 led-glow-green border border-white/5">
+                <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">04 // PRICE</div>
+                <h3 class="text-2xl mb-4 italic leading-tight">Unbeatable<br>Value</h3>
+                <p class="text-slate-400 text-sm leading-relaxed font-light">£10 Exterior / £20 In & Out Clean.</p>
             </div>
         </div>
     </section>
 
     <section id="frog-o-meter" class="py-24 px-6 bg-zinc-950">
         <div class="max-w-4xl mx-auto text-center mb-16">
-            <h2 class="text-5xl md:text-7xl font-black italic mb-4 uppercase tracking-tighter">Frog-O-Meter</h2>
-            <div class="h-1 w-24 neon-green-bg mx-auto"></div>
+            <h2 class="text-6xl md:text-8xl italic mb-4 tracking-tighter">FROG-O-METER</h2>
+            <div class="h-2 w-32 neon-green-bg mx-auto"></div>
         </div>
 
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-px bg-white/5 border border-white/10">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
             <div class="bg-black p-12">
-                <h4 class="text-sm font-bold text-slate-500 mb-8 uppercase tracking-widest">The "Back-Yard" Operator</h4>
-                <div class="space-y-6 text-slate-400">
+                <h4 class="font-tech text-[10px] text-slate-500 mb-8 tracking-[0.3em] uppercase italic">The "Back-Yard" Operator</h4>
+                <div class="space-y-6 font-tech text-slate-400 uppercase text-xs">
                     <div class="flex justify-between border-b border-white/5 pb-4">
                         <span>Time Investment</span>
-                        <span class="text-red-500 font-bold">15+ Mins</span>
+                        <span class="text-red-500">15+ MINS</span>
                     </div>
                     <div class="flex justify-between border-b border-white/5 pb-4">
                         <span>Price</span>
@@ -130,28 +128,28 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-zinc-900 p-12 border-2 neon-green-border">
-                <h4 class="text-sm font-bold neon-green-text mb-8 uppercase tracking-widest">The Green Frog Factory</h4>
-                <div class="space-y-6 text-white">
-                    <div class="flex justify-between border-b border-white/10 pb-4">
+            <div class="bg-zinc-900 p-12 border-2 border-green-500/50">
+                <h4 class="font-tech text-[10px] neon-green-text mb-8 tracking-[0.3em] uppercase italic">The Green Frog Factory</h4>
+                <div class="space-y-6 font-tech text-white uppercase">
+                    <div class="flex justify-between border-b border-white/10 pb-4 items-end">
                         <span>Time Investment</span>
-                        <span class="neon-green-text font-bold text-xl">4 Mins</span>
+                        <span class="neon-green-text text-3xl font-bold">04:00</span>
                     </div>
-                    <div class="flex justify-between border-b border-white/10 pb-4">
+                    <div class="flex justify-between border-b border-white/10 pb-4 items-end">
                         <span>Price</span>
-                        <span class="neon-green-text font-bold text-xl">£10.00</span>
+                        <span class="neon-green-text text-3xl font-bold">£10.00</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
- <footer class="py-20 bg-black border-t border-white/5 text-center">
-        <div class="h-20 w-20 mx-auto mb-6 rounded-full overflow-hidden border border-white/10 p-2 bg-black flex items-center justify-center">
-            <img src="Greenfroglogo.jpg" alt="Logo" class="h-16 mx-auto">
+    <footer class="py-20 bg-black border-t border-white/10 text-center">
+        <div class="h-24 w-24 mx-auto mb-8 rounded-full overflow-hidden border-2 border-white/10 p-2 bg-black flex items-center justify-center">
+            <img src="edited-image.jpg" alt="Logo" class="h-full w-full object-cover">
         </div>
-        <p class="text-slate-600 text-[10px] tracking-[0.4em] uppercase font-bold">
-            Disrupting The UK Car Wash Market. The Green Frog Car Wash Group  &copy; 2026.
+        <p class="font-tech text-slate-600 text-[10px] tracking-[0.5em] uppercase">
+            Disrupting the UK Car Wash Market // The Green Frog Car Wash Group © 2026
         </p>
     </footer>
 
@@ -160,7 +158,6 @@
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('factoryVideo', {
@@ -177,7 +174,9 @@
       }
       function onPlayerStateChange(event) {
         setInterval(function() {
-            if (player.getCurrentTime() >= 143) { player.seekTo(54); }
+            if (player && player.getCurrentTime && player.getCurrentTime() >= 143) { 
+                player.seekTo(54); 
+            }
         }, 1000);
       }
     </script>
