@@ -50,6 +50,35 @@
         .overlay-dark {
             background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
         }
+.perspective { perspective: 1000px; }
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+    }
+    /* The trigger for the flip */
+    .flip-card-inner.is-flipped { transform: rotateY(180deg); }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .flip-card-back {
+        transform: rotateY(180deg);
+        background-color: #111;
+        border: 1px solid #4ade80;
+    }
+
     </style>
 </head>
 <body class="text-white bg-black">
@@ -83,30 +112,68 @@
         </div>
     </header>
 
-    <section id="four-cues" class="py-32 px-6 bg-black">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
-            <div class="p-8 bg-zinc-900/30 led-glow-green border border-white/5">
-                <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">01 // SPEED</div>
-                <h3 class="text-2xl mb-4 italic leading-tight">Time-Back<br>Guarantee</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">4-minute wash. 7-minute interior clean.</p>
+ <section id="four-cues" class="py-32 px-6 bg-black">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-8">
+            
+            <div class="perspective h-80">
+                <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                    <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
+                        <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">01 // SPEED</div>
+                        <h3 class="text-2xl mb-4 italic leading-tight font-power">Time-Back<br>Guarantee</h3>
+                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                    </div>
+                    <div class="flip-card-back p-8">
+                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest underline">The Technical Goal</h4>
+                        <p class="text-white text-sm leading-relaxed">Throughput of 120 cars per hour. We eliminate the 'Saturday Queue' by treating car care as a high-speed logistics operation, not a manual service.</p>
+                    </div>
+                </div>
             </div>
-            <div class="p-8 bg-zinc-900/30 led-glow-red border border-white/5">
-                <div class="font-tech text-[10px] text-red-500 mb-6 tracking-[0.3em] uppercase">02 // QUALITY</div>
-                <h3 class="text-2xl mb-4 italic leading-tight">German<br>Engineering</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">State of the Art Engineering and chemistry.</p>
+
+            <div class="perspective h-80">
+                <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                    <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-red border border-white/5">
+                        <div class="font-tech text-[10px] text-red-500 mb-6 tracking-[0.3em] uppercase">02 // QUALITY</div>
+                        <h3 class="text-2xl mb-4 italic leading-tight font-power">German<br>Engineering</h3>
+                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                    </div>
+                    <div class="flip-card-back p-8">
+                        <h4 class="text-red-500 font-tech text-xs mb-4 uppercase tracking-widest underline">Hardware Specs</h4>
+                        <p class="text-white text-sm leading-relaxed">Utilizing Otto Christ AG hardware with variable speed brush controls and targeted high-pressure wheel-blasters. Precision chemistry tailored to UK road grime.</p>
+                    </div>
+                </div>
             </div>
-            <div class="p-8 bg-zinc-900/30 led-glow-yellow border border-white/5">
-                <div class="font-tech text-[10px] text-yellow-500 mb-6 tracking-[0.3em] uppercase">03 // CONSISTENCY</div>
-                <h3 class="text-2xl mb-4 italic leading-tight">The Factory<br>Standard</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">Eliminating human error. Every wash is identical. Every time.</p>
+
+            <div class="perspective h-80">
+                <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                    <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-yellow border border-white/5">
+                        <div class="font-tech text-[10px] text-yellow-500 mb-6 tracking-[0.3em] uppercase">03 // CONSISTENCY</div>
+                        <h3 class="text-2xl mb-4 italic leading-tight font-power">The Factory<br>Standard</h3>
+                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                    </div>
+                    <div class="flip-card-back p-8">
+                        <h4 class="text-yellow-500 font-tech text-xs mb-4 uppercase tracking-widest underline">Automation Logic</h4>
+                        <p class="text-white text-sm leading-relaxed">Human error is the enemy. Our software-driven approach ensures the exact same pressure and chemical mix is applied to every vehicle, every time.</p>
+                    </div>
+                </div>
             </div>
-            <div class="p-8 bg-zinc-900/30 led-glow-green border border-white/5">
-                <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">04 // PRICE</div>
-                <h3 class="text-2xl mb-4 italic leading-tight">Unbeatable<br>Value</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">£10 Exterior / £20 In & Out Clean.</p>
+
+            <div class="perspective h-80">
+                <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+                    <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
+                        <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">04 // PRICE</div>
+                        <h3 class="text-2xl mb-4 italic leading-tight font-power">Unbeatable<br>Value</h3>
+                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                    </div>
+                    <div class="flip-card-back p-8">
+                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest underline">Subscription Model</h4>
+                        <p class="text-white text-sm leading-relaxed">Designed for the 110k+ PHV drivers. £10 Exterior / £20 In & Out. We win on volume and efficiency, passing the savings to the high-frequency user.</p>
+                    </div>
+                </div>
             </div>
+
         </div>
-    </section>
+    </div>
 
     <section id="frog-o-meter" class="py-24 px-6 bg-zinc-950">
         <div class="max-w-4xl mx-auto text-center mb-16">
@@ -146,7 +213,7 @@
 
     <footer class="py-20 bg-black border-t border-white/10 text-center">
         <div class="h-24 w-24 mx-auto mb-8 rounded-full overflow-hidden border-2 border-white/10 p-2 bg-black flex items-center justify-center">
-            <img src="edited-image.jpg" alt="Logo" class="h-full w-full object-cover">
+            <img src="Greenfroglogo.jpg" alt="Logo" class="h-full w-full object-cover">
         </div>
         <p class="font-tech text-slate-600 text-[10px] tracking-[0.5em] uppercase">
             Disrupting the UK Car Wash Market // The Green Frog Car Wash Group © 2026
