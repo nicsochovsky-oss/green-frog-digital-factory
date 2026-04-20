@@ -78,7 +78,7 @@
         transform: rotateY(180deg);
         border: 1px solid #4ade80; /* Neon green border on the back */
     }
-    /* PRIVACY MODAL STYLES */
+    /* 5. PRIVACY MODAL STYLES */
     #privacy-modal:target {
         display: flex;
     }
@@ -87,6 +87,19 @@
     }
     .modal-content::-webkit-scrollbar-thumb {
         background: #4ade80;
+    }
+    /* 6. COOKIE CONSENT BAR */
+    #cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        transform: translateY(0);
+        transition: transform 0.5s ease-in-out;
+    }
+    #cookie-banner.hidden-banner {
+        transform: translateY(100%);
     }
 </style>
 </head>
@@ -263,9 +276,22 @@
 
         <div class="flex justify-center gap-6">
             <a href="#privacy-modal" class="font-tech text-[9px] text-slate-500 hover:text-green-400 uppercase tracking-[0.2em] transition">Privacy Notice</a>
-            <a href="mailto:compliance@greenfrog.com" class="font-tech text-[9px] text-slate-500 hover:text-green-400 uppercase tracking-[0.2em] transition">Contact</a>
+            <a href="mailto:nic@greenfrogcarwash.com" class="font-tech text-[9px] text-slate-500 hover:text-green-400 uppercase tracking-[0.2em] transition">Contact</a>
         </div>
     </footer>
+
+    <div id="cookie-banner" class="bg-zinc-900 border-t border-green-500/30 p-4 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="font-tech text-[10px] text-slate-300 tracking-wide text-center md:text-left">
+                <span class="text-green-500 font-bold">// SYSTEM NOTE:</span> 
+                We use essential cookies to ensure our site works and to understand how investors interact with our pitch materials. By continuing, you agree to our 
+                <a href="#privacy-modal" class="underline hover:text-white transition">Privacy Policy</a>.
+            </p>
+            <button onclick="dismissCookies()" class="bg-green-500 text-black font-power text-[10px] py-2 px-6 hover:bg-white transition">
+                Accept & Proceed
+            </button>
+        </div>
+    </div>
 
     <div id="privacy-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl items-center justify-center p-6">
         <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative">
@@ -293,7 +319,7 @@
                     </section>
                     <section>
                         <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">5. Your Rights</h3>
-                        <p>Contact: <span class="text-green-500">compliance@greenfrog.com</span> to access, correct, or delete your information.</p>
+                        <p>Contact: <span class="text-green-500">nic@greenfrogcarwash.com</span> to access, correct, or delete your information.</p>
                     </section>
                 </div>
             </div>
@@ -326,6 +352,19 @@
             }
         }, 1000);
       }
+function dismissCookies() {
+        document.getElementById('cookie-banner').classList.add('hidden-banner');
+        // Optional: Save to local storage so it doesn't pop up every time
+        localStorage.setItem('greenfrog-cookies-accepted', 'true');
+    }
+
+    // Auto-hide on load if already accepted
+    window.onload = function() {
+        if(localStorage.getItem('greenfrog-cookies-accepted')) {
+            document.getElementById('cookie-banner').classList.add('hidden-banner');
+        }
+    }
+
     </script>
 
    <div id="privacy-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl items-center justify-center p-6">
