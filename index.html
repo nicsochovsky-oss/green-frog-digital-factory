@@ -78,6 +78,16 @@
         transform: rotateY(180deg);
         border: 1px solid #4ade80; /* Neon green border on the back */
     }
+    /* PRIVACY MODAL STYLES */
+    #privacy-modal:target {
+        display: flex;
+    }
+    .modal-content::-webkit-scrollbar {
+        width: 4px;
+    }
+    .modal-content::-webkit-scrollbar-thumb {
+        background: #4ade80;
+    }
 </style>
 </head>
 <body class="text-white bg-black">
@@ -125,12 +135,12 @@
                     <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
                         <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase font-bold">01 // SPEED</div>
                         <h3 class="text-3xl mb-4 italic leading-none font-power">4-MINUTE<br>REVOLUTION</h3>
-                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Logistics Data</p>
+                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Projected Logistics Data</p>
                     </div>
                     <div class="flip-card-back p-8">
                         <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The Throughput Engine</h4>
                         <div class="space-y-4 text-white text-xs font-tech leading-relaxed">
-                            <p><span class="neon-green-text">INDUSTRIAL SCALE:</span> 120 cars washed per hour. We process more cars in 60 minutes than manual washes do in a day.</p>
+                            <p><span class="neon-green-text">INDUSTRIAL SCALE:</span> Targetted capacity 120 cars washed per hour. We process more cars in 60 minutes than manual washes do in a day.</p>
                             <p><span class="neon-green-text">ZERO QUEUE:</span> No more "Saturday Morning Stalls." High-velocity tech means you drive straight in and straight out.</p>
                         </div>
                     </div>
@@ -173,23 +183,24 @@
                 </div>
             </div>
 
-            <div class="perspective h-96">
-                <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
-                    <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
-                        <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase font-bold">04 // ECOSYSTEM</div>
-                        <h3 class="text-3xl mb-4 italic leading-none font-power">AUTO-PASSPORT<br>APP</h3>
-                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Subscription Info</p>
-                    </div>
-                    <div class="flip-card-back p-8">
-                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The Frictionless Flow</h4>
-                        <div class="space-y-3 text-white text-[11px] font-tech leading-tight">
-                            <p><span class="neon-green-text">●</span> <strong>LPR ACCESS:</strong> Automatic entry via License Plate Recognition. Windows up.</p>
-                            <p><span class="neon-green-text">●</span> <strong>LIVE LOGIC:</strong> Real-time 'site-busy' updates via the Green Frog App.</p>
-                            <p><span class="neon-green-text">●</span> <strong>FLAT RATE:</strong> £10 Ext / £20 In & Out. One price, <u>any</u> car size.</p>
-                        </div>
-                    </div>
-                </div>
+ <div class="perspective h-96">
+    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
+        <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
+            <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase font-bold">04 // VALUE</div>
+            <h3 class="text-3xl mb-4 italic leading-none font-power">TRANSPARENT<br>PRICING</h3>
+            <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Benefits</p>
+        </div>
+        
+        <div class="flip-card-back p-8">
+            <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The No-Brainer</h4>
+            <div class="space-y-4 text-white text-[11px] font-tech leading-tight">
+                <p><span class="neon-green-text">●</span> <strong>FLAT RATE:</strong> £10 Exterior / £20 In & Out. Unlike hand washes, we don't upcharge for SUVs or 4x4s. One price for everyone.</p>
+                <p><span class="neon-green-text">●</span> <strong>LIVE UPDATES:</strong> Use the Green Frog App to check site volume in real-time. Never waste time in a queue again.</p>
+                <p><span class="neon-green-text">●</span> <strong>MEMBER OFFERS:</strong> Exclusive "Wash & Wake Up" promotions and loyalty rewards delivered straight to your phone.</p>
             </div>
+        </div>
+    </div>
+</div>
 
         </div>
     </div>
@@ -232,24 +243,62 @@
     </section>
 
 <footer class="py-20 bg-black border-t border-white/10 text-center">
-    <div class="max-w-3xl mx-auto mb-12 px-6">
-        <div class="p-4 border border-white/5 bg-zinc-900/20">
-            <p class="font-tech text-[9px] uppercase tracking-[0.2em] text-slate-500 leading-relaxed">
-                <span class="text-yellow-500/80 font-bold">// INDUSTRIAL DISCLAIMER:</span> 
-                This platform represents a proposed flagship industrial solution for Park Royal, London. 
-                Specifications and visuals reflect the planned 2027 operational standard. 
-                Consumer services are subject to final site commissioning and regulatory approval.
-            </p>
+        <div class="max-w-3xl mx-auto mb-12 px-6">
+            <div class="p-4 border border-white/5 bg-zinc-900/20">
+                <p class="font-tech text-[9px] uppercase tracking-[0.2em] text-slate-500 leading-relaxed">
+                    <span class="text-yellow-500/80 font-bold">// INDUSTRIAL DISCLAIMER:</span> 
+                    This platform represents a proposed flagship industrial solution for Park Royal, London. 
+                    Specifications reflect the planned 2027 operational standard.
+                </p>
+            </div>
         </div>
-    </div>
 
-    <div class="h-24 w-24 mx-auto mb-8 rounded-full overflow-hidden border-2 border-white/10 p-2 bg-black flex items-center justify-center">
-        <img src="edited-image.jpg" alt="Logo" class="h-full w-full object-cover">
-    </div>
-    <p class="font-tech text-slate-600 text-[10px] tracking-[0.5em] uppercase">
+        <div class="h-24 w-24 mx-auto mb-8 rounded-full overflow-hidden border-2 border-white/10 p-2 bg-black flex items-center justify-center">
+            <img src="Greenfroglogo.jpg" alt="Logo" class="h-full w-full object-cover">
+        </div>
+
+        <p class="font-tech text-slate-600 text-[10px] tracking-[0.5em] uppercase mb-8">
             Disrupting the UK Car Wash Market // The Green Frog Car Wash Group © 2026
         </p>
+
+        <div class="flex justify-center gap-6">
+            <a href="#privacy-modal" class="font-tech text-[9px] text-slate-500 hover:text-green-400 uppercase tracking-[0.2em] transition">Privacy Notice</a>
+            <a href="mailto:compliance@greenfrog.com" class="font-tech text-[9px] text-slate-500 hover:text-green-400 uppercase tracking-[0.2em] transition">Contact</a>
+        </div>
     </footer>
+
+    <div id="privacy-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl items-center justify-center p-6">
+        <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative">
+            <a href="#" class="absolute top-4 right-4 font-tech text-green-500 hover:text-white transition text-xs">[ CLOSE X ]</a>
+            <div class="p-8 overflow-y-auto modal-content text-left">
+                <h2 class="font-power text-2xl mb-2 text-white">Privacy Notice</h2>
+                <p class="font-tech text-[10px] text-slate-500 mb-8 tracking-widest uppercase">The Green Frog Car Wash Group | Pre-Launch Notice</p>
+                
+                <div class="space-y-6 font-tech text-[11px] text-slate-300 leading-relaxed">
+                    <section>
+                        <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">1. Who We Are</h3>
+                        <p>A & N London Ltd (trading as Green Frog) is the "Data Controller". We are preparing to launch the UK’s most advanced automated car wash flagship in Park Royal.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">2. Data We Collect Now</h3>
+                        <p>Investor Data (Certification status), Early Access Data (Emails for updates), and Technical Data (Essential cookies).</p>
+                    </section>
+                    <section>
+                        <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">3. Future Processing (LPR & App)</h3>
+                        <p>Our operational model will utilize License Plate Recognition (LPR). <span class="text-yellow-500">Note: No LPR data is being collected until the Park Royal site becomes operational.</span></p>
+                    </section>
+                    <section>
+                        <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">4. Lawful Basis</h3>
+                        <p>Processed under Legitimate Interests and Legal Obligation (FCA COBS 4.12 verification).</p>
+                    </section>
+                    <section>
+                        <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">5. Your Rights</h3>
+                        <p>Contact: <span class="text-green-500">compliance@greenfrog.com</span> to access, correct, or delete your information.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
       var tag = document.createElement('script');
@@ -278,5 +327,47 @@
         }, 1000);
       }
     </script>
+
+   <div id="privacy-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl items-center justify-center p-6">
+    <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative">
+        <a href="#" class="absolute top-4 right-4 font-tech text-green-500 hover:text-white transition text-xs">[ CLOSE X ]</a>
+        
+        <div class="p-8 overflow-y-auto modal-content">
+            <h2 class="font-power text-2xl mb-2 text-white">Privacy Notice</h2>
+            <p class="font-tech text-[10px] text-slate-500 mb-8 tracking-widest uppercase">Last Updated: April 2026</p>
+            
+            <div class="space-y-8 font-tech text-xs text-slate-300 leading-relaxed">
+                <section>
+                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">1. Who We Are</h3>
+                    <p>A & N London Ltd (trading as Green Frog) is the "Data Controller" for your information. We are preparing to launch the UK’s most advanced automated car wash flagship in Park Royal.</p>
+                </section>
+
+                <section>
+                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">2. Data We Collect Now</h3>
+                    <ul class="list-disc ml-4 space-y-2">
+                        <li><span class="text-white">Investor Data:</span> Names, contact details, and self-certification status (HNW/Sophisticated) for those accessing investment materials.</li>
+                        <li><span class="text-white">Early Access Data:</span> Emails and names for "Foundation Member" updates.</li>
+                        <li><span class="text-white">Technical Data:</span> IP addresses and essential cookies.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">3. Future Processing (LPR & App)</h3>
+                    <p>Our operational model will utilize License Plate Recognition (LPR) and a mobile application to automate site entry and manage "Live Logic" updates. <span class="text-yellow-500/80 italic">Note: No LPR data is being collected until the Park Royal site becomes operational.</span></p>
+                </section>
+
+                <section>
+                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">4. Lawful Basis</h3>
+                    <p>We process data based on <span class="text-white italic">Legitimate Interests</span> (business progress) and <span class="text-white italic">Legal Obligation</span> (FCA COBS 4.12 verification).</p>
+                </section>
+
+                <section>
+                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">5. Your Rights</h3>
+                    <p>You have the right to access, correct, or delete your data. Contact: <span class="text-green-500">compliance@greenfrog.com</span>.</p>
+                </section>
+            </div>
+        </div>
+    </div>
+</div> 
 </body>
 </html>
