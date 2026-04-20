@@ -19,20 +19,31 @@
         .led-glow-yellow { border-left: 4px solid #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.2); }
         .led-glow-green { border-left: 4px solid #4ade80; box-shadow: 0 0 15px rgba(74, 222, 128, 0.2); }
 
-        /* 3. VIDEO & OVERLAY LOGIC (Mobile Optimized) */
-        .video-docker {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none; object-fit: cover;
-        }
-        @media (max-width: 768px) { .video-docker { width: 350%; height: 100%; } }
-        @media (min-width: 769px) { .video-docker { width: 115vw; height: 115vh; } }
+        /* 3. VIDEO & OVERLAY LOGIC (Brightened) */
+    .video-docker {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        object-fit: cover;
+        
+        /* THE FIX: Increase brightness (1.0 is normal, 1.3 is 30% brighter) */
+        /* We also add contrast to keep the colors from looking washed out */
+        filter: brightness(1.3) contrast(1.1); 
+    }
 
-        .overlay-dark {
-            position: absolute; inset: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
-            z-index: 10;
-        }
+    /* Standard scaling for Mobile/Desktop */
+    @media (max-width: 768px) { .video-docker { width: 350%; height: 100%; } }
+    @media (min-width: 769px) { .video-docker { width: 115vw; height: 115vh; } }
+
+    .overlay-dark {
+        position: absolute;
+        inset: 0;
+        /* THE FIX: Reduced opacity from 0.9 to 0.7 on the top/bottom for more visibility */
+        background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%);
+        z-index: 10;
+    }
 
         /* 4. FLIP CARD ENGINE */
         .perspective { perspective: 1000px; }
