@@ -6,129 +6,86 @@
     <title>Green Frog | The 4-Minute Revolution</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-    /* 1. TYPOGRAPHY STRATEGY */
-    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:wght@400;700&display=swap');
-    
-    .font-power { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; }
-    .font-tech { font-family: 'Roboto Mono', monospace; }
+        /* 1. TYPOGRAPHY STRATEGY */
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:wght@400;700&display=swap');
+        
+        .font-power { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; }
+        .font-tech { font-family: 'Roboto Mono', monospace; }
 
-    /* 2. BRANDING COLORS & LED GLOWS (Restored from your original setup) */
-    .neon-green-text { color: #4ade80; }
-    .neon-green-bg { background-color: #4ade80; }
-    .led-glow-red { border-left: 4px solid #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
-    .led-glow-yellow { border-left: 4px solid #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.2); }
-    .led-glow-green { border-left: 4px solid #4ade80; box-shadow: 0 0 15px rgba(74, 222, 128, 0.2); }
+        /* 2. BRANDING COLORS & LED GLOWS */
+        .neon-green-text { color: #4ade80; }
+        .neon-green-bg { background-color: #4ade80; }
+        .led-glow-red { border-left: 4px solid #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
+        .led-glow-yellow { border-left: 4px solid #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.2); }
+        .led-glow-green { border-left: 4px solid #4ade80; box-shadow: 0 0 15px rgba(74, 222, 128, 0.2); }
 
-   /* 3. VIDEO & OVERLAY LOGIC (Optimized for Mobile Cover) */
-    .video-docker {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        object-fit: cover;
-    }
-
-    /* Force height on mobile to prevent black bars */
-    @media (max-width: 768px) {
+        /* 3. VIDEO & OVERLAY LOGIC (Optimized for Mobile Cover) */
         .video-docker {
-            width: 350%; /* Scales width up so height fills tall phone screens */
-            height: 100%;
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; object-fit: cover;
         }
-    }
+        @media (max-width: 768px) { .video-docker { width: 350%; height: 100%; } }
+        @media (min-width: 769px) { .video-docker { width: 115vw; height: 115vh; } }
 
-    /* Standard scaling for Desktop */
-    @media (min-width: 769px) {
-        .video-docker {
-            width: 115vw;
-            height: 115vh;
+        .overlay-dark {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
+            z-index: 10;
         }
-    }
 
-    .overlay-dark {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
-        z-index: 10;
-    }
+        /* 4. FLIP CARD ENGINE */
+        .perspective { perspective: 1000px; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer;
+        }
+        .flip-card-inner.is-flipped { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .flip-card-back { background-color: #111; transform: rotateY(180deg); border: 1px solid #4ade80; }
 
-    /* 4. FLIP CARD ENGINE */
-    .perspective { perspective: 1000px; }
-    .flip-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.6s;
-        transform-style: preserve-3d;
-        cursor: pointer;
-    }
-    .flip-card-inner.is-flipped { transform: rotateY(180deg); }
-    .flip-card-front, .flip-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    .flip-card-back {
-        background-color: #111;
-        transform: rotateY(180deg);
-        border: 1px solid #4ade80; /* Neon green border on the back */
-    }
-    /* 5. PRIVACY MODAL STYLES */
-    #privacy-modal:target {
-        display: flex;
-    }
-    .modal-content::-webkit-scrollbar {
-        width: 4px;
-    }
-    .modal-content::-webkit-scrollbar-thumb {
-        background: #4ade80;
-    }
-    /* 6. COOKIE CONSENT BAR */
-    #cookie-banner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 90;
-        transform: translateY(0);
-        transition: transform 0.5s ease-in-out;
-    }
-    #cookie-banner.hidden-banner {
-        transform: translateY(100%);
-    }
-</style>
+        /* 5. MODAL TRIGGER LOGIC (FIXED) */
+        #privacy-modal:target, #investor-disclosure:target {
+            display: flex;
+        }
+        .modal-content::-webkit-scrollbar { width: 4px; }
+        .modal-content::-webkit-scrollbar-thumb { background: #4ade80; }
+
+        /* 6. COOKIE CONSENT BAR */
+        #cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            z-index: 90; transition: transform 0.5s ease-in-out;
+        }
+        #cookie-banner.hidden-banner { transform: translateY(100%); }
+    </style>
 </head>
 <body class="text-white bg-black">
 
- <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10 px-6 py-5 flex justify-between items-center">
-    <div class="flex items-center gap-5">
-        <div class="h-16 w-16 rounded-full overflow-hidden border-2 border-green-500/50 bg-black flex items-center justify-center shadow-[0_0_20px_rgba(74,222,128,0.2)]">
-            <img src="Greenfroglogo.jpg" alt="Green Frog Logo" class="h-full w-full object-cover scale-110">
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10 px-6 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-5">
+            <div class="h-16 w-16 rounded-full overflow-hidden border-2 border-green-500/50 bg-black flex items-center justify-center">
+                <img src="Greenfroglogo.jpg" alt="Logo" class="h-full w-full object-cover scale-110">
+            </div>
+            <span class="text-xl md:text-2xl font-power italic tracking-tighter uppercase leading-none">
+                THE GREEN <span class="neon-green-text">FROG</span> 
+                <span class="block md:inline text-xs md:text-sm text-slate-400 mt-1 md:mt-0 md:ml-2">CAR WASH</span>
+            </span>
         </div>
-        
-        <span class="text-xl md:text-2xl font-power italic tracking-tighter uppercase leading-none">
-            THE GREEN <span class="neon-green-text">FROG</span> 
-            <span class="block md:inline text-xs md:text-sm text-slate-400 mt-1 md:mt-0 md:ml-2">CAR WASH</span>
-        </span>
-    </div>
-    
-    <div class="hidden md:flex gap-8 font-tech text-[10px] uppercase tracking-[0.2em] text-slate-400">
-        <a href="#four-cues" class="hover:text-green-400 transition">Consumer Proposition</a>
-        <a href="#frog-o-meter" class="hover:text-green-400 transition">Comparison</a>
-    </div>
-</nav>
+        <div class="hidden md:flex gap-8 font-tech text-[10px] uppercase tracking-[0.2em] text-slate-400">
+            <a href="#four-cues" class="hover:text-green-400 transition">Consumer Proposition</a>
+            <a href="#frog-o-meter" class="hover:text-green-400 transition">Comparison</a>
+        </div>
+    </nav>
 
-<header class="relative h-[100dvh] flex items-center justify-center overflow-hidden bg-black">
+    <header class="relative h-[100dvh] flex items-center justify-center overflow-hidden bg-black">
         <div class="absolute inset-0 z-0">
             <iframe id="factoryVideo" src="https://www.youtube.com/embed/PyWIGwAvc4g?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&enablejsapi=1" class="video-docker" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="absolute inset-0 overlay-dark z-10"></div>
         </div>
-        
         <div class="relative z-20 text-center px-4 max-w-6xl">
             <h1 class="text-6xl md:text-[10rem] leading-none mb-6 italic tracking-tighter font-power">
                 THE 4-MINUTE <span class="neon-green-text block md:inline">REVOLUTION.</span>
@@ -139,141 +96,39 @@
         </div>
     </header>
 
- <section id="four-cues" class="py-32 px-6 bg-black">
-    <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-4 gap-8">
-            
+    <section id="four-cues" class="py-32 px-6 bg-black">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
             <div class="perspective h-96">
                 <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
                         <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase font-bold">01 // SPEED</div>
                         <h3 class="text-3xl mb-4 italic leading-none font-power">4-MINUTE<br>REVOLUTION</h3>
-                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Projected Logistics Data</p>
+                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Logistics Data</p>
                     </div>
                     <div class="flip-card-back p-8">
-                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The Throughput Engine</h4>
-                        <div class="space-y-4 text-white text-xs font-tech leading-relaxed">
-                            <p><span class="neon-green-text">INDUSTRIAL SCALE:</span> Targetted capacity 120 cars washed per hour. We process more cars in 60 minutes than manual washes do in a day.</p>
-                            <p><span class="neon-green-text">ZERO QUEUE:</span> No more "Saturday Morning Stalls." High-velocity tech means you drive straight in and straight out.</p>
-                        </div>
+                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">Throughput Engine</h4>
+                        <p class="text-white text-xs font-tech leading-relaxed">Targeted capacity: 120 cars per hour. High-velocity tech means zero Saturday morning queues.</p>
                     </div>
                 </div>
             </div>
-
-  <div class="perspective h-96">
-    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
-        <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-red border border-white/5">
-            <div class="font-tech text-[10px] text-red-500 mb-6 tracking-[0.3em] uppercase font-bold">02 // QUALITY</div>
-            <h3 class="text-3xl mb-4 italic leading-none font-power">SCIENCE-BACKED<br>PRECISION</h3>
-            <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Chemical Tiers</p>
-        </div>
-        <div class="flip-card-back p-8">
-            <h4 class="text-red-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The Tech Stack</h4>
-            <div class="space-y-3 text-white text-[10px] font-tech leading-tight">
-                <p><span class="text-red-500">SYSTEM:</span> SENSOTEX® grit-free foam + pH-balanced dosing neutralizes grime instantly without swirl marks.</p>
-                <p><span class="text-red-500">TIER 1 (EXPRESS):</span> Alligator Shower + Rim-Rex Extreme Acidic treatment for high-frequency fleet cleansing.</p>
-                <p><span class="text-red-500">TIER 2 (PREMIUM):</span> Active Foam Curtain + Nano Shine polish for a high-gloss, water-repellent finish.</p>
-                <p><span class="text-red-500">TIER 3 (NANO):</span> Dual-stage Chassis Defense + Nano-Finish for studio-grade paint protection.</p>
             </div>
-        </div>
-    </div>
-</div>
-
-            <div class="perspective h-96">
-                <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
-                    <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-yellow border border-white/5">
-                        <div class="font-tech text-[10px] text-yellow-500 mb-6 tracking-[0.3em] uppercase font-bold">03 // CONSISTENCY</div>
-                        <h3 class="text-3xl mb-4 italic leading-none font-power">THE FACTORY<br>STANDARD</h3>
-                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Tech Logic</p>
-                    </div>
-                    <div class="flip-card-back p-8">
-                        <h4 class="text-yellow-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">Automation Logic</h4>
-                        <div class="space-y-4 text-white text-xs font-tech leading-relaxed">
-                            <p><span class="text-yellow-500">ERROR-FREE:</span> Hand washes vary by the person. Our factory never has a "bad day." Every car gets the same 100% precision clean.</p>
-                            <p><span class="text-yellow-500">COMPLIANCE:</span> 100% trade-effluent compliant and ethical labor model.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
- <div class="perspective h-96">
-    <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
-        <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
-            <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase font-bold">04 // VALUE</div>
-            <h3 class="text-3xl mb-4 italic leading-none font-power">TRANSPARENT<br>PRICING</h3>
-            <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Benefits</p>
-        </div>
-        
-        <div class="flip-card-back p-8">
-            <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The No-Brainer</h4>
-            <div class="space-y-4 text-white text-[11px] font-tech leading-tight">
-                <p><span class="neon-green-text">●</span> <strong>FLAT RATE:</strong> £10 Exterior / £20 In & Out. Unlike hand washes, we don't upcharge for SUVs or 4x4s. One price for everyone.</p>
-                <p><span class="neon-green-text">●</span> <strong>LIVE UPDATES:</strong> Use the Green Frog App to check site volume in real-time. Never waste time in a queue again.</p>
-                <p><span class="neon-green-text">●</span> <strong>MEMBER OFFERS:</strong> Exclusive "Wash & Wake Up" promotions and loyalty rewards delivered straight to your phone.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
-    </div>
-</section>
-
-    <section id="frog-o-meter" class="py-24 px-6 bg-zinc-950">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-            <h2 class="text-6xl md:text-8xl italic mb-4 tracking-tighter">FROG-O-METER</h2>
-            <div class="h-2 w-32 neon-green-bg mx-auto"></div>
-        </div>
-
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
-            <div class="bg-black p-12">
-                <h4 class="font-tech text-[10px] text-slate-500 mb-8 tracking-[0.3em] uppercase italic">The Hand Wash Operator</h4>
-                <div class="space-y-6 font-tech text-slate-400 uppercase text-xs">
-                    <div class="flex justify-between border-b border-white/5 pb-4">
-                        <span>Time Investment</span>
-                        <span class="text-red-500">15+ MINS</span>
-                    </div>
-                    <div class="flex justify-between border-b border-white/5 pb-4">
-                        <span>Price</span>
-                        <span>£15.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-zinc-900 p-12 border-2 border-green-500/50">
-                <h4 class="font-tech text-[10px] neon-green-text mb-8 tracking-[0.3em] uppercase italic">The Green Frog Factory</h4>
-                <div class="space-y-6 font-tech text-white uppercase">
-                    <div class="flex justify-between border-b border-white/10 pb-4 items-end">
-                        <span>Time Investment</span>
-                        <span class="neon-green-text text-3xl font-bold">04:00</span>
-                    </div>
-                    <div class="flex justify-between border-b border-white/10 pb-4 items-end">
-                        <span>Price</span>
-                        <span class="neon-green-text text-3xl font-bold">£10.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
-<footer class="py-20 bg-black border-t border-white/10 text-center">
+    <footer class="py-20 bg-black border-t border-white/10 text-center">
         <div class="max-w-3xl mx-auto mb-12 px-6">
-            <div class="p-4 border border-white/5 bg-zinc-900/20">
+            <div class="p-4 border border-white/5 bg-zinc-900/20 text-left">
                 <p class="font-tech text-[9px] uppercase tracking-[0.2em] text-slate-500 leading-relaxed">
                     <span class="text-yellow-500/80 font-bold">// INDUSTRIAL DISCLAIMER:</span> 
-                    This platform represents a proposed flagship industrial solution for Park Royal, London. 
-                    Specifications reflect the planned 2027 operational standard.
+                    Proposed flagship site for Park Royal. 2027 operational standards shown.
                 </p>
             </div>
         </div>
-
         <div class="h-24 w-24 mx-auto mb-8 rounded-full overflow-hidden border-2 border-white/10 p-2 bg-black flex items-center justify-center">
             <img src="Greenfroglogo.jpg" alt="Logo" class="h-full w-full object-cover">
         </div>
-
         <p class="font-tech text-slate-600 text-[10px] tracking-[0.5em] uppercase mb-8">
-            Disrupting the UK Car Wash Market // The Green Frog Car Wash Group © 2026
+            Disrupting the UK Car Wash Market // Green Frog Group © 2026
         </p>
-
         <div class="flex flex-wrap justify-center gap-6">
             <a href="#privacy-modal" class="font-tech text-[9px] text-slate-500 hover:text-green-400 uppercase tracking-[0.2em] transition">Privacy Notice</a>
             <a href="#investor-disclosure" class="font-tech text-[9px] text-slate-500 hover:text-green-400 uppercase tracking-[0.2em] transition">Investor Disclosure</a>
@@ -281,118 +136,77 @@
         </div>
     </footer>
 
+    <div id="cookie-banner" class="bg-zinc-900 border-t border-green-500/30 p-4 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="font-tech text-[10px] text-slate-300 tracking-wide text-center md:text-left">
+                <span class="text-green-500 font-bold">// SYSTEM NOTE:</span> 
+                We use essential cookies to ensure site functionality. 
+                <a href="#privacy-modal" class="underline hover:text-white transition">Privacy Policy</a>.
+            </p>
+            <button onclick="dismissCookies()" class="bg-green-500 text-black font-power text-[10px] py-2 px-6 hover:bg-white transition">Accept</button>
+        </div>
+    </div>
+
     <div id="investor-disclosure" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl items-center justify-center p-6">
-        <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative">
-            <a href="#" class="absolute top-4 right-4 font-tech text-green-500 hover:text-white transition text-xs">[ CLOSE X ]</a>
-            <div class="p-8 overflow-y-auto modal-content text-left">
-                <h2 class="font-power text-2xl mb-2 text-white">Investor Disclosure</h2>
-                <p class="font-tech text-[10px] text-yellow-500 mb-8 tracking-widest uppercase italic">FCA COBS 4.12A Regulatory Notice</p>
+        <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative shadow-2xl">
+            <a href="#" class="absolute top-4 right-4 font-tech text-green-500 hover:text-white transition text-xs font-bold">[ CLOSE X ]</a>
+            <div class="p-8 overflow-y-auto modal-content text-left italic">
+                <h2 class="font-power text-2xl mb-2 text-white italic">Investor Disclosure</h2>
+                <p class="font-tech text-[10px] text-yellow-500 mb-8 tracking-widest uppercase font-bold">FCA COBS 4.12A Regulatory Notice</p>
                 <div class="space-y-6 font-tech text-[11px] text-slate-300 leading-relaxed uppercase">
                     <p class="border-l-2 border-red-500 pl-4">Investment in early-stage companies involves a high degree of risk. Your capital is at risk.</p>
                     <p>Information regarding the proposed £7.5m fundraise is intended for Professional Investors only.</p>
-                    <p>The Green Frog Car Wash Group is a trading name of A & N London Ltd. Contact <span class="text-white">nic@greenfrogcarwash.com</span> for official documentation.</p>
+                    <p>Contact <span class="text-white">nic@greenfrogcarwash.com</span> for official documentation and high-net-worth certification.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="privacy-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl items-center justify-center p-6">
-        <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative">
-            <a href="#" class="absolute top-4 right-4 font-tech text-green-500 hover:text-white transition text-xs">[ CLOSE X ]</a>
+        <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative shadow-2xl">
+            <a href="#" class="absolute top-4 right-4 font-tech text-green-500 hover:text-white transition text-xs font-bold">[ CLOSE X ]</a>
             <div class="p-8 overflow-y-auto modal-content text-left">
                 <h2 class="font-power text-2xl mb-2 text-white">Privacy Notice</h2>
-                <p class="font-tech text-[10px] text-slate-500 mb-8 tracking-widest uppercase">The Green Frog Car Wash Group | Pre-Launch Notice</p>
+                <p class="font-tech text-[10px] text-slate-500 mb-8 tracking-widest uppercase">The Green Frog Car Wash Group | April 2026</p>
                 <div class="space-y-6 font-tech text-[11px] text-slate-300 leading-relaxed">
-                    <section>
-                        <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">5. Your Rights</h3>
-                        <p>You have the right to access, correct, or delete your data. To exercise these rights, contact: <span class="text-green-500 font-bold">nic@greenfrogcarwash.com</span>.</p>
-                    </section>
+                    <p><span class="text-green-500 uppercase font-bold">1. Data Controller:</span> A & N London Ltd (trading as Green Frog).</p>
+                    <p><span class="text-green-500 uppercase font-bold">2. Data We Collect:</span> Investor Names (FCA Compliance), Email for updates, and Technical Session Cookies.</p>
+                    <p><span class="text-green-500 uppercase font-bold">3. Future Tech:</span> License Plate Recognition (LPR) will be operational only once Park Royal site is live.</p>
+                    <p><span class="text-green-500 uppercase font-bold">4. Rights:</span> Contact <span class="text-white">nic@greenfrogcarwash.com</span> to exercise data access or deletion rights.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('factoryVideo', {
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-      function onPlayerReady(event) {
-        event.target.mute();
-        event.target.seekTo(54);
-        event.target.playVideo();
-      }
-      function onPlayerStateChange(event) {
-        setInterval(function() {
-            if (player && player.getCurrentTime && player.getCurrentTime() >= 143) { 
-                player.seekTo(54); 
-            }
-        }, 1000);
-      }
-function dismissCookies() {
-        document.getElementById('cookie-banner').classList.add('hidden-banner');
-        // Optional: Save to local storage so it doesn't pop up every time
-        localStorage.setItem('greenfrog-cookies-accepted', 'true');
-    }
-
-    // Auto-hide on load if already accepted
-    window.onload = function() {
-        if(localStorage.getItem('greenfrog-cookies-accepted')) {
-            document.getElementById('cookie-banner').classList.add('hidden-banner');
+        /* YouTube Logic */
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('factoryVideo', {
+                events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+            });
         }
-    }
+        function onPlayerReady(event) { event.target.mute(); event.target.seekTo(54); event.target.playVideo(); }
+        function onPlayerStateChange(event) {
+            setInterval(function() {
+                if (player && player.getCurrentTime && player.getCurrentTime() >= 143) { player.seekTo(54); }
+            }, 1000);
+        }
 
+        /* Cookie Logic */
+        function dismissCookies() {
+            document.getElementById('cookie-banner').classList.add('hidden-banner');
+            localStorage.setItem('greenfrog-cookies-accepted', 'true');
+        }
+        window.onload = function() {
+            if(localStorage.getItem('greenfrog-cookies-accepted')) {
+                document.getElementById('cookie-banner').classList.add('hidden-banner');
+            }
+        }
     </script>
-
-   <div id="privacy-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl items-center justify-center p-6">
-    <div class="bg-zinc-900 border border-white/10 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col relative">
-        <a href="#" class="absolute top-4 right-4 font-tech text-green-500 hover:text-white transition text-xs">[ CLOSE X ]</a>
-        
-        <div class="p-8 overflow-y-auto modal-content">
-            <h2 class="font-power text-2xl mb-2 text-white">Privacy Notice</h2>
-            <p class="font-tech text-[10px] text-slate-500 mb-8 tracking-widest uppercase">Last Updated: April 2026</p>
-            
-            <div class="space-y-8 font-tech text-xs text-slate-300 leading-relaxed">
-                <section>
-                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">1. Who We Are</h3>
-                    <p>A & N London Ltd (trading as Green Frog) is the "Data Controller" for your information. We are preparing to launch the UK’s most advanced automated car wash flagship in Park Royal.</p>
-                </section>
-
-                <section>
-                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">2. Data We Collect Now</h3>
-                    <ul class="list-disc ml-4 space-y-2">
-                        <li><span class="text-white">Investor Data:</span> Names, contact details, and self-certification status (HNW/Sophisticated) for those accessing investment materials.</li>
-                        <li><span class="text-white">Early Access Data:</span> Emails and names for "Foundation Member" updates.</li>
-                        <li><span class="text-white">Technical Data:</span> IP addresses and essential cookies.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">3. Future Processing (LPR & App)</h3>
-                    <p>Our operational model will utilize License Plate Recognition (LPR) and a mobile application to automate site entry and manage "Live Logic" updates. <span class="text-yellow-500/80 italic">Note: No LPR data is being collected until the Park Royal site becomes operational.</span></p>
-                </section>
-
-                <section>
-                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">4. Lawful Basis</h3>
-                    <p>We process data based on <span class="text-white italic">Legitimate Interests</span> (business progress) and <span class="text-white italic">Legal Obligation</span> (FCA COBS 4.12 verification).</p>
-                </section>
-
-                <section>
-                    <h3 class="text-green-500 mb-2 uppercase font-bold tracking-widest">5. Your Rights</h3>
-                    <p>You have the right to access, correct, or delete your data. Contact: <span class="text-green-500">compliance@greenfrog.com</span>.</p>
-                </section>
-            </div>
-        </div>
-    </div>
-</div> 
 </body>
 </html>
