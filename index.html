@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Frog | The 4-Minute Revolution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f172a; /* Dark Industrial Slate */
+        }
+        .neon-green-text { color: #4ade80; }
+        .neon-green-bg { background-color: #4ade80; }
+        .neon-green-border { border-color: #4ade80; }
+        .video-docker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .overlay-gradient {
+            background: linear-gradient(0deg, rgba(15,23,42,1) 0%, rgba(15,23,42,0.6) 50%, rgba(15,23,42,0.8) 100%);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <iframe class="video-docker" 
+                src="https://www.youtube.com/embed/SshM977_vYc?start=45&end=143&autoplay=1&mute=1&controls=0&loop=1&playlist=SshM977_vYc" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+            <div class="absolute inset-0 overlay-gradient z-10"></div>
+        </div>
+        
+        <div class="relative z-20 text-center px-4 max-w-5xl">
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-4 italic">
+                GREEN <span class="neon-green-text">FROG</span>
+            </h1>
+            <p class="text-xl md:text-3xl font-bold uppercase tracking-widest mb-8">
+                The 4-Minute Revolution. <span class="block text-slate-400">Quality without the wait.</span>
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#frog-o-meter" class="neon-green-bg text-black font-black py-4 px-8 rounded-none hover:bg-white transition-all uppercase tracking-tighter">
+                    Experience the Factory
+                </a>
+                <a href="#" class="border-2 border-white text-white font-black py-4 px-8 rounded-none hover:bg-white hover:text-black transition-all uppercase tracking-tighter">
+                    Investor Portal
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 bg-slate-900 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="group">
+                    <div class="text-4xl mb-4 neon-green-text font-black">01. SPEED</div>
+                    <h3 class="text-2xl font-black mb-2 uppercase italic">The Time-Back Guarantee</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        4-minute exterior. 7-minute interior. No queuing. Our **LPR (License Plate Recognition)** tech creates a "Fast Track" flow—no windows down, no cash, no friction.
+                    </p>
+                </div>
+                <div class="group">
+                    <div class="text-4xl mb-4 neon-green-text font-black">02. QUALITY</div>
+                    <h3 class="text-2xl font-black mb-2 uppercase italic">German Engineering</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Science-backed car care using **Christ AG** hardware. Automatically dosed chemistry and paint-safe closed-cell foam for a showroom finish every time.
+                    </p>
+                </div>
+                <div class="group">
+                    <div class="text-4xl mb-4 neon-green-text font-black">03. CONSISTENCY</div>
+                    <h3 class="text-2xl font-black mb-2 uppercase italic">The Factory Standard</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Hand washes vary by the person. Green Frog is a factory. Identical precision on every vehicle, eliminating human error and missed spots.
+                    </p>
+                </div>
+                <div class="group">
+                    <div class="text-4xl mb-4 neon-green-text font-black">04. PRICE</div>
+                    <h3 class="text-2xl font-black mb-2 uppercase italic">Unbeatable Value</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        **£10 Exterior / £20 In & Out.** We underprice manual competition while delivering 10x the technology and 100% compliance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="frog-o-meter" class="py-24 px-6 bg-black">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <h2 class="text-4xl md:text-6xl font-black italic mb-4 uppercase tracking-tighter">The Frog-O-Meter</h2>
+            <p class="text-slate-500 uppercase tracking-widest">Efficiency Comparison</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-px bg-slate-800 border border-slate-800">
+            <div class="bg-slate-900 p-12">
+                <h4 class="text-xl font-bold text-slate-500 mb-8 uppercase tracking-widest">Manual Hand Wash</h4>
+                <div class="space-y-6">
+                    <div class="flex justify-between border-b border-slate-800 pb-4">
+                        <span>Average Wait</span>
+                        <span class="font-bold text-red-500">45 Minutes</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-800 pb-4">
+                        <span>Cost</span>
+                        <span class="font-bold">£15.00+</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-800 pb-4">
+                        <span>Quality Control</span>
+                        <span class="font-bold italic">Variable / Human Risk</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-950 p-12 border-2 border-4ade80 relative">
+                <div class="absolute top-0 right-0 neon-green-bg text-black text-xs font-black px-4 py-1 uppercase">Winner</div>
+                <h4 class="text-xl font-bold neon-green-text mb-8 uppercase tracking-widest">Green Frog Factory</h4>
+                <div class="space-y-6 text-white">
+                    <div class="flex justify-between border-b border-slate-800 pb-4">
+                        <span>Average Wait</span>
+                        <span class="font-bold text-4ade80">4 Minutes</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-800 pb-4">
+                        <span>Cost</span>
+                        <span class="font-bold text-4ade80">£10.00</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-800 pb-4">
+                        <span>Quality Control</span>
+                        <span class="font-bold italic text-4ade80">German Precision</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-slate-800 text-center">
+        <p class="text-slate-600 text-sm tracking-widest uppercase">
+            &copy; 2026 A & N London Ltd | Green Frog Car Care | Disrupting the £2.5bn Market
+        </p>
+    </footer>
+
+</body>
+</html>
