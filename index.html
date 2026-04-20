@@ -6,51 +6,33 @@
     <title>Green Frog | The 4-Minute Revolution</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* CMO Typography Strategy: Archivo Black for Power, Roboto Mono for Precision */
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --font-power: 'Archivo Black', sans-serif;
-            --font-tech: 'Roboto Mono', monospace;
-        }
+    /* 1. TYPOGRAPHY STRATEGY */
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:wght@400;700&display=swap');
+    
+    .font-power { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; }
+    .font-tech { font-family: 'Roboto Mono', monospace; }
 
-        body { 
-            font-family: 'Inter', sans-serif; /* Fallback */
-            background-color: #000000; 
-        }
+    /* 2. BRANDING COLORS & LED GLOWS (Restored from your original setup) */
+    .neon-green-text { color: #4ade80; }
+    .neon-green-bg { background-color: #4ade80; }
+    .led-glow-red { border-left: 4px solid #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
+    .led-glow-yellow { border-left: 4px solid #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.2); }
+    .led-glow-green { border-left: 4px solid #4ade80; box-shadow: 0 0 15px rgba(74, 222, 128, 0.2); }
 
-        h1, h2, h3, h4, .font-power { 
-            font-family: var(--font-power); 
-            text-transform: uppercase;
-        }
+    /* 3. VIDEO & OVERLAY LOGIC */
+    .video-docker {
+        position: absolute;
+        top: 50%; left: 50%;
+        min-width: 105%; min-height: 105%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+    .overlay-dark {
+        background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
+    }
 
-        .font-tech { 
-            font-family: var(--font-tech); 
-        }
-
-        /* Branding Colors */
-        .neon-green-text { color: #4ade80; }
-        .neon-green-bg { background-color: #4ade80; }
-        
-        /* Architect Lighting Accents */
-        .led-glow-red { border-left: 4px solid #ef4444; }
-        .led-glow-yellow { border-left: 4px solid #eab308; }
-        .led-glow-green { border-left: 4px solid #4ade80; }
-
-        .video-docker {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 105%;
-            min-height: 105%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .overlay-dark {
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%);
-        }
-.perspective { perspective: 1000px; }
+    /* 4. FLIP CARD ENGINE */
+    .perspective { perspective: 1000px; }
     .flip-card-inner {
         position: relative;
         width: 100%;
@@ -59,9 +41,7 @@
         transform-style: preserve-3d;
         cursor: pointer;
     }
-    /* The trigger for the flip */
     .flip-card-inner.is-flipped { transform: rotateY(180deg); }
-
     .flip-card-front, .flip-card-back {
         position: absolute;
         width: 100%;
@@ -72,14 +52,12 @@
         flex-direction: column;
         justify-content: center;
     }
-
     .flip-card-back {
-        transform: rotateY(180deg);
         background-color: #111;
-        border: 1px solid #4ade80;
+        transform: rotateY(180deg);
+        border: 1px solid #4ade80; /* Neon green border on the back */
     }
-
-    </style>
+</style>
 </head>
 <body class="text-white bg-black">
 
@@ -116,64 +94,78 @@
     <div class="max-w-7xl mx-auto">
         <div class="grid md:grid-cols-4 gap-8">
             
-            <div class="perspective h-80">
+            <div class="perspective h-96">
                 <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
-                        <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">01 // SPEED</div>
-                        <h3 class="text-2xl mb-4 italic leading-tight font-power">Time-Back<br>Guarantee</h3>
-                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                        <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase font-bold">01 // SPEED</div>
+                        <h3 class="text-3xl mb-4 italic leading-none font-power">4-MINUTE<br>REVOLUTION</h3>
+                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Logistics Data</p>
                     </div>
                     <div class="flip-card-back p-8">
-                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest underline">The Technical Goal</h4>
-                        <p class="text-white text-sm leading-relaxed">Throughput of 120 cars per hour. We eliminate the 'Saturday Queue' by treating car care as a high-speed logistics operation, not a manual service.</p>
+                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The Throughput Engine</h4>
+                        <div class="space-y-4 text-white text-xs font-tech leading-relaxed">
+                            <p><span class="neon-green-text">RAW POWER:</span> 120 cars/hour capacity via 55m Christ EVO STAR tunnel.</p>
+                            <p><span class="neon-green-text">ZERO QUEUE:</span> Logistics-led processing eliminates the 'Saturday Wait'.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="perspective h-80">
+            <div class="perspective h-96">
                 <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-red border border-white/5">
-                        <div class="font-tech text-[10px] text-red-500 mb-6 tracking-[0.3em] uppercase">02 // QUALITY</div>
-                        <h3 class="text-2xl mb-4 italic leading-tight font-power">German<br>Engineering</h3>
-                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                        <div class="font-tech text-[10px] text-red-500 mb-6 tracking-[0.3em] uppercase font-bold">02 // QUALITY</div>
+                        <h3 class="text-3xl mb-4 italic leading-none font-power">GERMAN<br>PRECISION</h3>
+                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Hardware Specs</p>
                     </div>
                     <div class="flip-card-back p-8">
-                        <h4 class="text-red-500 font-tech text-xs mb-4 uppercase tracking-widest underline">Hardware Specs</h4>
-                        <p class="text-white text-sm leading-relaxed">Utilizing Otto Christ AG hardware with variable speed brush controls and targeted high-pressure wheel-blasters. Precision chemistry tailored to UK road grime.</p>
+                        <h4 class="text-red-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">Engineering Specs</h4>
+                        <div class="space-y-4 text-white text-xs font-tech leading-relaxed">
+                            <p><span class="text-red-500">HARDWARE:</span> Otto Christ AG automation with variable-speed brush logic.</p>
+                            <p><span class="text-red-500">CHEMISTRY:</span> Multi-stage pH-balanced dosing. Paint-safe closed-cell foam.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="perspective h-80">
+            <div class="perspective h-96">
                 <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-yellow border border-white/5">
-                        <div class="font-tech text-[10px] text-yellow-500 mb-6 tracking-[0.3em] uppercase">03 // CONSISTENCY</div>
-                        <h3 class="text-2xl mb-4 italic leading-tight font-power">The Factory<br>Standard</h3>
-                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                        <div class="font-tech text-[10px] text-yellow-500 mb-6 tracking-[0.3em] uppercase font-bold">03 // CONSISTENCY</div>
+                        <h3 class="text-3xl mb-4 italic leading-none font-power">THE FACTORY<br>STANDARD</h3>
+                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Tech Logic</p>
                     </div>
                     <div class="flip-card-back p-8">
-                        <h4 class="text-yellow-500 font-tech text-xs mb-4 uppercase tracking-widest underline">Automation Logic</h4>
-                        <p class="text-white text-sm leading-relaxed">Human error is the enemy. Our software-driven approach ensures the exact same pressure and chemical mix is applied to every vehicle, every time.</p>
+                        <h4 class="text-yellow-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">Automation Logic</h4>
+                        <div class="space-y-4 text-white text-xs font-tech leading-relaxed">
+                            <p><span class="text-yellow-500">ERROR-FREE:</span> Removing human variance. Every wash is identical.</p>
+                            <p><span class="text-yellow-500">COMPLIANCE:</span> 100% trade-effluent compliant and ethical labor model.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="perspective h-80">
+            <div class="perspective h-96">
                 <div class="flip-card-inner" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-front p-8 bg-zinc-900/30 led-glow-green border border-white/5">
-                        <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase">04 // PRICE</div>
-                        <h3 class="text-2xl mb-4 italic leading-tight font-power">Unbeatable<br>Value</h3>
-                        <p class="text-slate-400 text-sm font-tech uppercase">Click to view detail</p>
+                        <div class="font-tech text-[10px] neon-green-text mb-6 tracking-[0.3em] uppercase font-bold">04 // ECOSYSTEM</div>
+                        <h3 class="text-3xl mb-4 italic leading-none font-power">AUTO-PASSPORT<br>APP</h3>
+                        <p class="text-slate-400 text-[10px] font-tech uppercase tracking-widest">Tap for Subscription Info</p>
                     </div>
                     <div class="flip-card-back p-8">
-                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest underline">Subscription Model</h4>
-                        <p class="text-white text-sm leading-relaxed">Designed for the 110k+ PHV drivers. £10 Exterior / £20 In & Out. We win on volume and efficiency, passing the savings to the high-frequency user.</p>
+                        <h4 class="text-green-500 font-tech text-xs mb-4 uppercase tracking-widest font-bold">The Frictionless Flow</h4>
+                        <div class="space-y-3 text-white text-[11px] font-tech leading-tight">
+                            <p><span class="neon-green-text">●</span> <strong>LPR ACCESS:</strong> Automatic entry via License Plate Recognition. Windows up.</p>
+                            <p><span class="neon-green-text">●</span> <strong>LIVE LOGIC:</strong> Real-time 'site-busy' updates via the Green Frog App.</p>
+                            <p><span class="neon-green-text">●</span> <strong>FLAT RATE:</strong> £10 Ext / £20 In & Out. One price, <u>any</u> car size.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+</section>
 
     <section id="frog-o-meter" class="py-24 px-6 bg-zinc-950">
         <div class="max-w-4xl mx-auto text-center mb-16">
