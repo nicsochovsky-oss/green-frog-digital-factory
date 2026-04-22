@@ -336,10 +336,10 @@
                 events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
             });
         }
-        function onPlayerReady(event) { event.target.mute(); event.target.seekTo(54); event.target.playVideo(); }
+        function onPlayerReady(event) { event.target.mute(); event.target.seekTo(68); event.target.playVideo(); }
         function onPlayerStateChange(event) {
             setInterval(function() {
-                if (player && player.getCurrentTime && player.getCurrentTime() >= 143) { player.seekTo(54); }
+                if (player && player.getCurrentTime && player.getCurrentTime() >= 143) { player.seekTo(68); }
             }, 1000);
         }
         function dismissCookies() {
