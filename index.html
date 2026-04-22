@@ -68,16 +68,19 @@
 <body class="text-white bg-black">
 
  <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10 px-6 py-2 flex justify-between items-center">
-    <div class="flex items-center">
-        <div class="h-24 w-56 md:h-32 md:w-80 overflow-hidden bg-transparent flex items-center justify-start">
-            <img src="Greenfroglogo2.jpg" alt="The Green Frog Car Wash" class="h-full w-full object-contain object-left scale-150 origin-left">
+        
+        <div class="h-28 md:h-32 flex flex-col justify-center gap-6">
+            
+            <div class="h-16 w-40 md:h-20 md:w-48 overflow-hidden bg-transparent flex items-center justify-start py-2">
+                <img src="Greenfroglogo2.jpg" alt="Logo" class="h-full w-full object-contain object-left scale-125">
+            </div>
+
+            </div>
+        
+        <div class="hidden md:flex gap-10 font-tech text-[10px] uppercase tracking-[0.2em] text-slate-400 mr-4">
+            <a href="#four-cues" class="hover:text-green-400 transition underline decoration-green-500/20 decoration-1 underline-offset-4">Proposition</a>
+            <a href="#frog-o-meter" class="hover:text-green-400 transition underline decoration-green-500/20 decoration-1 underline-offset-4">Comparison</a>
         </div>
-    </div>
-    
-    <div class="hidden md:flex gap-10 font-tech text-[11px] uppercase tracking-[0.3em] text-slate-400 mr-4">
-        <a href="#four-cues" class="hover:text-green-400 transition underline decoration-green-500/30 underline-offset-8">Proposition</a>
-        <a href="#frog-o-meter" class="hover:text-green-400 transition underline decoration-green-500/30 underline-offset-8">Comparison</a>
-    </div>
 
     <button onclick="toggleMenu()" class="md:hidden text-white p-2 z-[100]" aria-label="Menu">
         <svg id="menuIcon" class="w-8 h-8 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
